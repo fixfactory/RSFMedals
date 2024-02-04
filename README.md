@@ -4,7 +4,7 @@
 
 ## Overview
 
-RSF Medals is a browser extension for Firefox that enhances the [Rally Sim Fans website](https://rallysimfans.hu/) by displaying medal icons next to your personal record times.
+RSF Medals is a browser extension for Firefox that enhances the [Rally Sim Fans website](https://rallysimfans.hu/) by displaying medal icons next to your personal record times. Can you get all golds?
 
 ## How To Get It
 
