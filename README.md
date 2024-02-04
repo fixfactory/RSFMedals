@@ -8,7 +8,7 @@ RSF Medals is a browser extension for Firefox and Chrome that enhances the [Rall
 
 ## How To Get It
 
-[Firefox extension](https://addons.mozilla.org/en-US/firefox/extensions/).
+[Get Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/rsf-medals/).
 
 
 ## How to Use
@@ -19,3 +19,14 @@ Simply install the extension then, when you visit your [user stats](https://rall
 2. Visit [Rally Sim Fans website](https://rallysimfans.hu/) and login to your account
 3. Navigate to the [user stats](https://rallysimfans.hu/rbr/usersstats.php) page
 4. Click the "Show record times" button
+
+
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/screenshot-01.png" />
+</p>
+
+<p align="center">
+  <img src="screenshots/screenshot-02.png" />
+</p>
