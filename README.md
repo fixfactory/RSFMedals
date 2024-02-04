@@ -16,7 +16,7 @@ RSF Medals is a browser extension for Firefox and Chrome that enhances the [Rall
 Simply install the extension then, when you visit your [user stats](https://rallysimfans.hu/rbr/usersstats.php) page of the [Rally Sim Fans website](https://rallysimfans.hu/), medal icons will appear next to your personal record times that qualify for a medal. To see the target times, move your mouse over the personal record time.
 
 1. Install the extension
-2. Visit [Rally Sim Fans website](https://rallysimfans.hu/) and login to your account
+2. Visit the [Rally Sim Fans website](https://rallysimfans.hu/) and login to your account
 3. Navigate to the [user stats](https://rallysimfans.hu/rbr/usersstats.php) page
 4. Click the "Show record times" button
 
