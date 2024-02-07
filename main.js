@@ -30,8 +30,8 @@ function parseTime(timeString) {
 
 // Returns the total number of milliseconds in a Date object.
 function totalMs(date) {
-  return date.getMinutes() * 60 * 1000 +
-    date.getSeconds() * 1000 +
+  return date.getMinutes() * 60.0 * 1000.0 +
+    date.getSeconds() * 1000.0 +
     date.getMilliseconds()
 }
 
@@ -45,7 +45,7 @@ function pad(num, size) {
 // Returns the target time string relative to a record time.
 function targetTime(relative, record) {
   let recordMs = totalMs(record)
-  let targetMs = recordMs * relative / 100
+  let targetMs = recordMs * relative / 100.0
   let target = new Date(0, 0, 0, 0, 0, 0, targetMs)
   return target.getMinutes() + ":" +
     pad(target.getSeconds(), 2) + "." +
@@ -73,13 +73,13 @@ function parseRow(row) {
 
   let time = parseTime(String(timeDiv[0].firstChild.data))
   let record = parseTime(String(recordDiv[0].firstChild.data))
-  let relative = totalMs(time) / totalMs(record) * 100
+  let relative = 100.0 * totalMs(time) / totalMs(record)
 
   // Constants used to determine the target times
-  const wr = 100
-  const gold = 105
-  const silver = 110
-  const bronze = 120
+  const wr = 100.0
+  const gold = 105.0
+  const silver = 110.0
+  const bronze = 120.0
 
   // Inject the medal emoji
   if (relative <= wr) {
