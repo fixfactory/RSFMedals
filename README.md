@@ -10,7 +10,7 @@ RSF Medals is a browser extension for Firefox and Chrome that enhances the [Rall
 
 [Get Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/rsf-medals/)
 
-[Get Chrome extension](https://chromewebstore.google.com/detail/jbfldpodlpmfalddefimgcecjebcclhi/)
+[Get Chrome extension](https://chromewebstore.google.com/detail/jbfldpodlpmfalddefimgcecjebcclhi)
 
 
 ## How to Use
