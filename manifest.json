@@ -1,7 +1,12 @@
 {
     "manifest_version":3,
-    "version":"1.3",
+    "version":"1.4",
     "name":"RSF Medals",
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "{ea005da8-4a72-46d4-ad5a-2cf8817daf32}"
+      }
+    },   
     "icons": {
       "48": "icons/icon48.png",
       "96": "icons/icon96.png"
