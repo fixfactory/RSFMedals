@@ -1,6 +1,6 @@
 {
     "manifest_version":3,
-    "version":"1.2",
+    "version":"1.3",
     "name":"RSF Medals",
     "icons": {
       "48": "icons/icon48.png",
@@ -14,6 +14,12 @@
     ],
     "host_permissions": [
       "*://*.rallysimfans.hu/rbr/usersstats.php*"
-    ]  
+    ],
+    "web_accessible_resources": [
+      {
+        "matches": ["*://*.rallysimfans.hu/*"],
+        "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png"]
+      }
+    ] 
   }
   

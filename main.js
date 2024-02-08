@@ -18,6 +18,26 @@
 // with RSF Medals. If not, see <http://www.gnu.org/licenses/>.
 //
 
+// Chrome does not have a browser object defined
+if (typeof browser === "undefined") {
+  var browser = chrome;
+}
+
+var wrURL = browser.runtime.getURL('images/wr.png');
+var wrHTML = "<img src='" + wrURL + "' alt='World record trophy' style='vertical-align:middle;margin:0px 2px'>"
+
+var goldURL = browser.runtime.getURL('images/gold.png');
+var goldHTML = "<img src='" + goldURL + "' alt='Gold medal' style='vertical-align:middle;margin:0px 2px'>"
+var goldHTMLMouseOver = "<img src=\\'" + goldURL + "\\' alt=\\'Gold medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
+
+var silverURL = browser.runtime.getURL('images/silver.png');
+var silverHTML = "<img src='" + silverURL + "' alt='Silver medal' style='vertical-align:middle;margin:0px 2px'>"
+var silverHTMLMouseOver = "<img src=\\'" + silverURL + "\\' alt=\\'Silver medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
+
+var bronzeURL = browser.runtime.getURL('images/bronze.png');
+var bronzeHTML = "<img src='" + bronzeURL + "' alt='Bronze medal' style='vertical-align:middle;margin:0px 2px'>"
+var bronzeHTMLMouseOver = "<img src=\\'" + bronzeURL + "\\' alt=\\'Bronze medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
+
 // Takes a time string in the format "6:45.123" and returns a Date object.
 function parseTime(timeString) {
   let colon = timeString.indexOf(':')
@@ -81,26 +101,26 @@ function parseRow(row) {
   const silver = 110.0
   const bronze = 120.0
 
-  // Inject the medal emoji
+  // Inject the medal HTML
   if (relative <= wr) {
-    timeDiv[0].firstChild.data = "🏆 " + timeDiv[0].firstChild.data
+    timeDiv[0].insertAdjacentHTML("afterbegin", wrHTML);
   } else if (relative <= gold) {
-    timeDiv[0].firstChild.data = "🥇 " + timeDiv[0].firstChild.data
+    timeDiv[0].insertAdjacentHTML("afterbegin", goldHTML);
   } else if (relative <= silver) {
-    timeDiv[0].firstChild.data = "🥈 " + timeDiv[0].firstChild.data
+    timeDiv[0].insertAdjacentHTML("afterbegin", silverHTML);
   } else if (relative <= bronze) {
-    timeDiv[0].firstChild.data = "🥉 " + timeDiv[0].firstChild.data
+    timeDiv[0].insertAdjacentHTML("afterbegin", bronzeHTML);
   } else {
     //timeDiv[0].firstChild.data = "💩 " + timeDiv[0].firstChild.data
   }
 
   // Inject the target times in the mouse over tooltip
   let targetTimes = "<br><br>" +
-    "🥇 " + targetTime(gold, record) + " (+" + String(gold - 100) + "%)" +
+    goldHTMLMouseOver + targetTime(gold, record) + " (+" + String(gold - 100) + "%)" +
     "<br>" +
-    "🥈 " + targetTime(silver, record) + " (+" + String(silver - 100) + "%)" +
+    silverHTMLMouseOver + targetTime(silver, record) + " (+" + String(silver - 100) + "%)" +
     "<br>" +
-    "🥉 " + targetTime(bronze, record) + " (+" + String(bronze - 100) + "%)" +
+    bronzeHTMLMouseOver + targetTime(bronze, record) + " (+" + String(bronze - 100) + "%)" +
     "<br>"
 
   let mouseover = timeDiv[0].getAttribute("onmouseover")
