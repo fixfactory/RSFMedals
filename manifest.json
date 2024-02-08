@@ -13,7 +13,7 @@
       }
     ],
     "host_permissions": [
-      "https://rallysimfans.hu/"
+      "*://*.rallysimfans.hu/rbr/usersstats.php*"
     ]  
   }
   
