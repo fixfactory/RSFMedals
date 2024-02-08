@@ -120,3 +120,9 @@ rows = document.getElementsByClassName("paros")
 for (let i = 0; i < rows.length; i++) {
   parseRow(rows[i]);
 }
+
+// Parse all the world record rows.
+rows = document.getElementsByClassName("lista_kiemelt1")
+for (let i = 0; i < rows.length; i++) {
+  parseRow(rows[i]);
+}
