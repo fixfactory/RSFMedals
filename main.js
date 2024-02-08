@@ -38,6 +38,16 @@ var bronzeURL = browser.runtime.getURL('images/bronze.png');
 var bronzeHTML = "<img src='" + bronzeURL + "' alt='Bronze medal' style='vertical-align:middle;margin:0px 2px'>"
 var bronzeHTMLMouseOver = "<img src=\\'" + bronzeURL + "\\' alt=\\'Bronze medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
 
+// Statistics
+var totalStageCount = 0
+var totalStagesCompleted = 0
+var totalBronzeMedals = 0
+var totalSilverMedals = 0
+var totalGoldMedals = 0
+var totalWRs = 0
+var totalStageTimeWR = 0
+var totalStageTime = 0
+
 // Takes a time string in the format "6:45.123" and returns a Date object.
 function parseTime(timeString) {
   let colon = timeString.indexOf(':')
@@ -79,11 +89,15 @@ function parseRow(row) {
     return
   }
 
+  totalStageCount++
+
   // Personal record cell
   let timeDiv = cells[6].querySelectorAll("div");
   if (timeDiv.length <= 0 || !timeDiv[0].firstChild) {
     return
   }
+
+  totalStagesCompleted++
 
   // World record cell
   let recordDiv = cells[7].querySelectorAll("div");
@@ -92,8 +106,12 @@ function parseRow(row) {
   }
 
   let time = parseTime(String(timeDiv[0].firstChild.data))
+  let timeMs = totalMs(time)
   let record = parseTime(String(recordDiv[0].firstChild.data))
-  let relative = 100.0 * totalMs(time) / totalMs(record)
+  let recordMs = totalMs(record)
+  let relative = 100.0 * timeMs / recordMs
+  totalStageTime += timeMs
+  totalStageTimeWR += recordMs
 
   // Constants used to determine the target times
   const wr = 100.0
@@ -104,12 +122,22 @@ function parseRow(row) {
   // Inject the medal HTML
   if (relative <= wr) {
     timeDiv[0].insertAdjacentHTML("afterbegin", wrHTML);
+    totalWRs++
+    totalGoldMedals++
+    totalSilverMedals++
+    totalBronzeMedals++
   } else if (relative <= gold) {
     timeDiv[0].insertAdjacentHTML("afterbegin", goldHTML);
+    totalGoldMedals++
+    totalSilverMedals++
+    totalBronzeMedals++
   } else if (relative <= silver) {
     timeDiv[0].insertAdjacentHTML("afterbegin", silverHTML);
+    totalSilverMedals++
+    totalBronzeMedals++
   } else if (relative <= bronze) {
     timeDiv[0].insertAdjacentHTML("afterbegin", bronzeHTML);
+    totalBronzeMedals++    
   } else {
     //timeDiv[0].firstChild.data = "💩 " + timeDiv[0].firstChild.data
   }
@@ -145,4 +173,43 @@ for (let i = 0; i < rows.length; i++) {
 rows = document.getElementsByClassName("lista_kiemelt1")
 for (let i = 0; i < rows.length; i++) {
   parseRow(rows[i]);
+}
+
+// Add stats to the profile table
+if (totalStageCount > 0) {
+  var profiles = document.getElementsByClassName("profile")
+
+  for (let i = 0; i < profiles.length; i++) {
+    console.log(profiles[i].nodeName) 
+    if (profiles[i].nodeName == "TABLE")
+    {
+      let tbody = profiles[i].firstChild
+      let stageCompletion = Number(100.0 * totalStagesCompleted / totalStageCount).toFixed(0)
+      let row = "<tr><td><b>Stages completed:</b></td><td>" + totalStagesCompleted + " / " + totalStageCount + " (" + stageCompletion + "%)</td></tr>"
+      tbody.insertAdjacentHTML("beforeend", row);
+      
+      if (totalStagesCompleted > 0) {
+        let bronzeRatio = Number(100.0 * totalBronzeMedals / totalStagesCompleted).toFixed(0)
+        row = "<tr><td><b>" + bronzeHTML + "Bronze medals:</b></td><td>" + totalBronzeMedals + " / " + totalStagesCompleted + " (" + bronzeRatio + "%)</td></tr>"
+        tbody.insertAdjacentHTML("beforeend", row);
+        
+        let silverRatio = Number(100.0 * totalSilverMedals / totalStagesCompleted).toFixed(0)
+        row = "<tr><td><b>" + silverHTML + "Silver medals:</b></td><td>" + totalSilverMedals + " / " + totalStagesCompleted + " (" + silverRatio + "%)</td></tr>"
+        tbody.insertAdjacentHTML("beforeend", row);
+        
+        let goldRatio = Number(100.0 * totalGoldMedals / totalStagesCompleted).toFixed(0)
+        row = "<tr><td><b>" + goldHTML + "Gold medals:</b></td><td>" + totalGoldMedals + " / " + totalStagesCompleted + " (" + goldRatio + "%)</td></tr>"
+        tbody.insertAdjacentHTML("beforeend", row);
+        
+        row = "<tr><td><b>" + wrHTML + "World records:</b></td><td>" + totalWRs + " / " + totalStagesCompleted + "</td></tr>"
+        tbody.insertAdjacentHTML("beforeend", row);
+        
+        let avgDiff = Number(100.0 * totalStageTime / totalStageTimeWR - 100).toFixed(0)
+        row = "<tr><td><b>Average diff:</b></td><td>+" + avgDiff + "%</td></tr>"
+        tbody.insertAdjacentHTML("beforeend", row);
+      }
+      
+      break
+    }
+  }
 }
