@@ -1,30 +1,29 @@
 {
-    "manifest_version":3,
-    "version":"1.4",
-    "name":"RSF Medals",
-    "browser_specific_settings": {
-      "gecko": {
-        "id": "{ea005da8-4a72-46d4-ad5a-2cf8817daf32}"
-      }
-    },   
-    "icons": {
-      "48": "icons/icon48.png",
-      "96": "icons/icon96.png"
-    },
-    "content_scripts":[
-      {
-       "matches":["*://*.rallysimfans.hu/rbr/usersstats.php*"],
-       "js":["main.js"]
-      }
-    ],
-    "host_permissions": [
-      "*://*.rallysimfans.hu/rbr/usersstats.php*"
-    ],
-    "web_accessible_resources": [
-      {
-        "matches": ["*://*.rallysimfans.hu/*"],
-        "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png"]
-      }
-    ] 
-  }
-  
+  "manifest_version":3,
+  "version":"1.4",
+  "name":"RSF Medals",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{ea005da8-4a72-46d4-ad5a-2cf8817daf32}"
+    }
+  },   
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+  "content_scripts":[
+    {
+      "matches":["*://*.rallysimfans.hu/rbr/usersstats.php*"],
+      "js":["main.js"]
+    }
+  ],
+  "host_permissions": [
+    "*://*.rallysimfans.hu/rbr/usersstats.php*"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["*://*.rallysimfans.hu/*"],
+      "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png"]
+    }
+  ] 
+}
