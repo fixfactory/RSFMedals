@@ -209,7 +209,7 @@ if (totalStageCount > 0) {
         row = "<tr><td><b>" + wrHTML + "World records:</b></td><td>" + totalWRs + " / " + totalStagesCompleted + "</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
         
-        let avgDiff = Number(100.0 * totalStageTime / totalStageTimeWR - 100).toFixed(0)
+        let avgDiff = Number(100.0 * totalStageTime / totalStageTimeWR - 100).toFixed(1)
         row = "<tr><td><b>Average diff:</b></td><td>+" + avgDiff + "%</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
       }
