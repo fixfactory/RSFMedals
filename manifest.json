@@ -1,6 +1,6 @@
 {
   "manifest_version":3,
-  "version":"1.5",
+  "version":"1.6",
   "name":"RSF Medals",
   "browser_specific_settings": {
     "gecko": {
@@ -23,7 +23,8 @@
   "web_accessible_resources": [
     {
       "matches": ["*://*.rallysimfans.hu/*"],
-      "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png"]
+      "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png", 
+        "images/wr.svg", "images/gold.svg", "images/silver.svg", "images/bronze.svg"]
     }
   ] 
 }

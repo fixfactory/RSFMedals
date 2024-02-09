@@ -23,20 +23,25 @@ if (typeof browser === "undefined") {
   var browser = chrome;
 }
 
-var wrURL = browser.runtime.getURL('images/wr.png');
-var wrHTML = "<img src='" + wrURL + "' alt='World record trophy' style='vertical-align:middle;margin:0px 2px'>"
+var wrPngURL = browser.runtime.getURL('images/wr.png');
+var wrSvgURL = browser.runtime.getURL('images/wr.svg');
+var wrHTML = "<img src='" + wrPngURL + "' srcset='" + wrSvgURL + "' width='18' height='18' alt='World record trophy' style='vertical-align:middle;margin:0px 2px'>"
+var wrHTMLMouseOver = "<img src=\\'" + wrPngURL + "\\' srcset=\\'" + wrSvgURL + "\\' \\'width=\\'18\\' height=\\'18\\' alt=\\'World record trophy\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
 
-var goldURL = browser.runtime.getURL('images/gold.png');
-var goldHTML = "<img src='" + goldURL + "' alt='Gold medal' style='vertical-align:middle;margin:0px 2px'>"
-var goldHTMLMouseOver = "<img src=\\'" + goldURL + "\\' alt=\\'Gold medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
+var goldPngURL = browser.runtime.getURL('images/gold.png');
+var goldSvgURL = browser.runtime.getURL('images/gold.svg');
+var goldHTML = "<img src='" + goldPngURL + "' srcset='" + goldSvgURL + "' width='18' height='18' alt='Gold medal' style='vertical-align:middle;margin:0px 2px'>"
+var goldHTMLMouseOver = "<img src=\\'" + goldPngURL + "\\' srcset=\\'" + goldSvgURL + "\\' \\'width=\\'18\\' height=\\'18\\' alt=\\'Gold medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
 
-var silverURL = browser.runtime.getURL('images/silver.png');
-var silverHTML = "<img src='" + silverURL + "' alt='Silver medal' style='vertical-align:middle;margin:0px 2px'>"
-var silverHTMLMouseOver = "<img src=\\'" + silverURL + "\\' alt=\\'Silver medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
+var silverPngURL = browser.runtime.getURL('images/silver.png');
+var silverSvgURL = browser.runtime.getURL('images/silver.svg');
+var silverHTML = "<img src='" + silverPngURL + "' srcset='" + silverSvgURL + "' width='18' height='18' alt='Silver medal' style='vertical-align:middle;margin:0px 2px'>"
+var silverHTMLMouseOver = "<img src=\\'" + silverPngURL + "\\' srcset=\\'" + silverSvgURL + "\\' \\'width=\\'18\\' height=\\'18\\' alt=\\'Silver medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
 
-var bronzeURL = browser.runtime.getURL('images/bronze.png');
-var bronzeHTML = "<img src='" + bronzeURL + "' alt='Bronze medal' style='vertical-align:middle;margin:0px 2px'>"
-var bronzeHTMLMouseOver = "<img src=\\'" + bronzeURL + "\\' alt=\\'Bronze medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
+var bronzePngURL = browser.runtime.getURL('images/bronze.png');
+var bronzeSvgURL = browser.runtime.getURL('images/bronze.svg');
+var bronzeHTML = "<img src='" + bronzePngURL + "' srcset='" + bronzeSvgURL + "' width='18' height='18' alt='Bronze medal' style='vertical-align:middle;margin:0px 2px'>"
+var bronzeHTMLMouseOver = "<img src=\\'" + bronzePngURL + "\\' srcset=\\'" + bronzeSvgURL + "\\' \\'width=\\'18\\' height=\\'18\\' alt=\\'Bronze medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
 
 // Statistics
 var totalStageCount = 0
