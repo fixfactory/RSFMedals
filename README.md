@@ -32,3 +32,7 @@ Simply install the extension then, when you visit your [user stats](https://rall
 <p align="center">
   <img src="screenshots/screenshot-02.png" />
 </p>
+
+<p align="center">
+  <img src="screenshots/screenshot-03.png" />
+</p>
