@@ -94,6 +94,13 @@ function parseRow(row) {
     return
   }
 
+  // Stage id cell
+  // Ignore stages that cannot be run anymore
+  let stageId = cells[0]
+  if (stageId.firstChild.data == "409" || stageId.firstChild.data == "408") {
+    return
+  }
+
   totalStageCount++
 
   // Personal record cell
@@ -183,9 +190,7 @@ for (let i = 0; i < rows.length; i++) {
 // Add stats to the profile table
 if (totalStageCount > 0) {
   var profiles = document.getElementsByClassName("profile")
-
   for (let i = 0; i < profiles.length; i++) {
-    console.log(profiles[i].nodeName) 
     if (profiles[i].nodeName == "TABLE")
     {
       let tbody = profiles[i].firstChild
