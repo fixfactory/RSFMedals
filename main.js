@@ -206,7 +206,7 @@ if (totalStageCount > 0) {
         row = "<tr><td><b>" + goldHTML + "Gold medals:</b></td><td>" + totalGoldMedals + " / " + totalStagesCompleted + " (" + goldRatio + "%)</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
         
-        row = "<tr><td><b>" + wrHTML + "World records:</b></td><td>" + totalWRs + " / " + totalStagesCompleted + "</td></tr>"
+        row = "<tr><td><b>" + wrHTML + "World records:</b></td><td>" + totalWRs + "</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
         
         let avgDiff = Number(100.0 * totalStageTime / totalStageTimeWR - 100).toFixed(1)
