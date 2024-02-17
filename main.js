@@ -155,7 +155,8 @@ function parseRow(row) {
   }
 
   // Inject the target times in the mouse over tooltip
-  let targetTimes = "<br><br>" +
+  let targetTimes = "<br>+" + (relative - 100).toFixed(1) + "%" +
+    "<br><br>" +
     goldHTMLMouseOver + targetTime(gold, record) + " (+" + String(gold - 100) + "%)" +
     "<br>" +
     silverHTMLMouseOver + targetTime(silver, record) + " (+" + String(silver - 100) + "%)" +
