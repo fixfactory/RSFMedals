@@ -43,6 +43,10 @@ var bronzeSvgURL = browser.runtime.getURL('images/bronze.svg');
 var bronzeHTML = "<img src='" + bronzePngURL + "' srcset='" + bronzeSvgURL + "' width='18' height='18' alt='Bronze medal' style='vertical-align:middle;margin:0px 2px'>"
 var bronzeHTMLMouseOver = "<img src=\\'" + bronzePngURL + "\\' srcset=\\'" + bronzeSvgURL + "\\' \\'width=\\'18\\' height=\\'18\\' alt=\\'Bronze medal\\' style=\\'vertical-align:middle;margin:0px 2px\\'>"
 
+var poopPngURL = browser.runtime.getURL('images/poop.png');
+var poopSvgURL = browser.runtime.getURL('images/poop.svg');
+var poopHTML = "<img src='" + poopPngURL + "' srcset='" + poopSvgURL + "' width='18' height='18' alt='Worst diff' style='vertical-align:middle;margin:0px 2px'>"
+
 // Statistics
 var totalStageCount = 0
 var totalStagesCompleted = 0
@@ -52,6 +56,8 @@ var totalGoldMedals = 0
 var totalWRs = 0
 var totalStageTimeWR = 0
 var totalStageTime = 0
+var worstRelative = 0.0
+var worstRelativeRow = null
 
 // Takes a time string in the format "6:45.123" and returns a Date object.
 function parseTime(timeString) {
@@ -168,6 +174,28 @@ function parseRow(row) {
   let endDiv = mouseover.indexOf('</div>')
   mouseover = mouseover.slice(0, endDiv) + targetTimes + mouseover.slice(endDiv)
   timeDiv[0].setAttribute("onmouseover", mouseover)
+
+  // Remember the worst relative to highlight it
+  if (relative > worstRelative) {
+    worstRelative = relative
+    worstRelativeRow = row
+  }
+}
+
+// Parses a row of the record times table and inject HTML.
+function highlightWorstRelative(row) {
+  let cells = row.querySelectorAll("td");
+  if (cells.length < 8) {
+    return
+  }
+
+  // Personal record cell
+  let timeDiv = cells[6].querySelectorAll("div");
+  if (timeDiv.length <= 0 || !timeDiv[0].firstChild) {
+    return
+  }
+
+  timeDiv[0].insertAdjacentHTML("beforeend", poopHTML);
 }
 
 // Parse all the odd rows.
@@ -186,6 +214,11 @@ for (let i = 0; i < rows.length; i++) {
 rows = document.getElementsByClassName("lista_kiemelt1")
 for (let i = 0; i < rows.length; i++) {
   parseRow(rows[i]);
+}
+
+// Highlight the worst relative
+if (worstRelativeRow != null) {
+  highlightWorstRelative(worstRelativeRow)
 }
 
 // Add stats to the profile table

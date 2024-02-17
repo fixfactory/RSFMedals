@@ -23,8 +23,8 @@
   "web_accessible_resources": [
     {
       "matches": ["*://*.rallysimfans.hu/*"],
-      "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png", 
-        "images/wr.svg", "images/gold.svg", "images/silver.svg", "images/bronze.svg"]
+      "resources": ["images/wr.png", "images/gold.png", "images/silver.png", "images/bronze.png", "images/poop.png",
+        "images/wr.svg", "images/gold.svg", "images/silver.svg", "images/bronze.svg", "images/poop.svg"]
     }
   ] 
 }
