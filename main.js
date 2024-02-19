@@ -47,6 +47,10 @@ var poopPngURL = browser.runtime.getURL('images/poop.png');
 var poopSvgURL = browser.runtime.getURL('images/poop.svg');
 var poopHTML = "<img src='" + poopPngURL + "' srcset='" + poopSvgURL + "' width='18' height='18' alt='Worst diff' style='vertical-align:middle;margin:0px 2px'>"
 
+var checkmarkPngURL = browser.runtime.getURL('images/checkmark.png');
+var checkmarkSvgURL = browser.runtime.getURL('images/checkmark.svg');
+var checkmarkHTML = "<img src='" + checkmarkPngURL + "' srcset='" + checkmarkSvgURL + "' width='18' height='18' alt='Checkmark' style='vertical-align:middle;margin:0px 2px'>"
+
 // Statistics
 var totalStageCount = 0
 var totalStagesCompleted = 0
@@ -229,20 +233,36 @@ if (totalStageCount > 0) {
     {
       let tbody = profiles[i].firstChild
       let stageCompletion = Number(100.0 * totalStagesCompleted / totalStageCount).toFixed(0)
-      let row = "<tr><td><b>Stages completed:</b></td><td>" + totalStagesCompleted + " / " + totalStageCount + " (" + stageCompletion + "%)</td></tr>"
+      let checkmark = ""
+      if (stageCompletion >= 100) {
+        checkmark = checkmarkHTML
+      }
+      let row = "<tr><td><b>Stages completed:</b></td><td>" + totalStagesCompleted + " / " + totalStageCount + " (" + stageCompletion + "%)" + checkmark + "</td></tr>"
       tbody.insertAdjacentHTML("beforeend", row);
       
       if (totalStagesCompleted > 0) {
         let bronzeRatio = Number(100.0 * totalBronzeMedals / totalStagesCompleted).toFixed(0)
-        row = "<tr><td><b>" + bronzeHTML + "Bronze medals:</b></td><td>" + totalBronzeMedals + " / " + totalStagesCompleted + " (" + bronzeRatio + "%)</td></tr>"
+        checkmark = ""
+        if (bronzeRatio >= 100) {
+          checkmark = checkmarkHTML
+        }
+        row = "<tr><td><b>" + bronzeHTML + "Bronze medals:</b></td><td>" + totalBronzeMedals + " / " + totalStagesCompleted + " (" + bronzeRatio + "%)" + checkmark + "</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
         
         let silverRatio = Number(100.0 * totalSilverMedals / totalStagesCompleted).toFixed(0)
-        row = "<tr><td><b>" + silverHTML + "Silver medals:</b></td><td>" + totalSilverMedals + " / " + totalStagesCompleted + " (" + silverRatio + "%)</td></tr>"
+        checkmark = ""
+        if (silverRatio >= 100) {
+          checkmark = checkmarkHTML
+        }
+        row = "<tr><td><b>" + silverHTML + "Silver medals:</b></td><td>" + totalSilverMedals + " / " + totalStagesCompleted + " (" + silverRatio + "%)" + checkmark + "</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
         
         let goldRatio = Number(100.0 * totalGoldMedals / totalStagesCompleted).toFixed(0)
-        row = "<tr><td><b>" + goldHTML + "Gold medals:</b></td><td>" + totalGoldMedals + " / " + totalStagesCompleted + " (" + goldRatio + "%)</td></tr>"
+        checkmark = ""
+        if (goldRatio >= 100) {
+          checkmark = checkmarkHTML
+        }
+        row = "<tr><td><b>" + goldHTML + "Gold medals:</b></td><td>" + totalGoldMedals + " / " + totalStagesCompleted + " (" + goldRatio + "%)" + checkmark + "</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
         
         row = "<tr><td><b>" + wrHTML + "World records:</b></td><td>" + totalWRs + "</td></tr>"
