@@ -62,6 +62,7 @@ var totalStageTimeWR = 0
 var totalStageTime = 0
 var worstRelative = 0.0
 var worstRelativeRow = null
+var carUsage = new Map()
 
 // Takes a time string in the format "6:45.123" and returns a Date object.
 function parseTime(timeString) {
@@ -112,6 +113,19 @@ function parseRow(row) {
   }
 
   totalStageCount++
+
+  // Car cell
+  let carDiv = cells[5].querySelectorAll("div");
+  if (carDiv.length <= 0 || !carDiv[0].firstChild || carDiv[0].firstChild.data == "") {
+    return
+  }
+
+  let carUseCount = 0
+  if (carUsage.has(carDiv[0].firstChild.data)) {
+    carUseCount = carUsage.get(carDiv[0].firstChild.data)
+  }
+  carUseCount++
+  carUsage.set(carDiv[0].firstChild.data, carUseCount)
 
   // Personal record cell
   let timeDiv = cells[6].querySelectorAll("div");
@@ -270,6 +284,19 @@ if (totalStageCount > 0) {
         
         let avgDiff = Number(100.0 * totalStageTime / totalStageTimeWR - 100).toFixed(1)
         row = "<tr><td><b>Average diff:</b></td><td>+" + avgDiff + "%</td></tr>"
+        tbody.insertAdjacentHTML("beforeend", row);
+
+        let favoriteCar = ""
+        let favoriteCarUsage = 0
+        const carIt = carUsage[Symbol.iterator]();
+        for (const item of carIt) {         
+          if (item[1] > favoriteCarUsage) {
+            favoriteCarUsage = item[1]
+            favoriteCar = item[0]
+          }
+        }
+        let favoriteCarUsageRatio = Number(100.0 * favoriteCarUsage / totalStagesCompleted).toFixed(0)
+        row = "<tr><td><b>Favorite car:</b></td><td>" + favoriteCar + " (" + favoriteCarUsageRatio + "%)</td></tr>"
         tbody.insertAdjacentHTML("beforeend", row);
       }
       
