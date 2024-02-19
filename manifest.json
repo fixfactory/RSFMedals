@@ -1,6 +1,6 @@
 {
   "manifest_version":3,
-  "version":"1.9",
+  "version":"1.10",
   "name":"RSF Medals",
   "browser_specific_settings": {
     "gecko": {
